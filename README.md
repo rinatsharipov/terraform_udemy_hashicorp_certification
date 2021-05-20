@@ -5,4 +5,4 @@
 * lab_5 - access map/ list variable value;
 * lab_6 - scale instances using count param;
 * lab_7 - conditional expressions;
-
+* lab_8 - use locals;
