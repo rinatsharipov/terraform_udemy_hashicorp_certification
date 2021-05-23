@@ -9,3 +9,4 @@
 * lab_9  - use data sources;
 * lab_10 - use dynamic blocks;
 * lab_11 - splat expressions;
+* lab_12 - remote provisioners;
