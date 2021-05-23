@@ -2,7 +2,7 @@ terraform {
   # provider version is required for production use
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "~> 3.0"
     }
   }
@@ -19,7 +19,7 @@ data "aws_ami" "app_ami" {
   owners = ["amazon"]
 
   filter {
-    name = "name"
+    name   = "name"
     values = ["amzn2-ami-hvm*"]
   }
 }
@@ -30,25 +30,25 @@ resource "aws_security_group" "allow_all_traffic" {
   description = "Allow all traffic"
 
   ingress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "all"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "all"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "all"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "all"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
 resource "aws_instance" "myec2" {
-  ami           = data.aws_ami.app_ami.image_id
-  instance_type = "t2.nano"
+  ami             = data.aws_ami.app_ami.image_id
+  instance_type   = "t2.nano"
   security_groups = [aws_security_group.allow_all_traffic.name]
-  key_name = "terraform-ec2"
+  key_name        = "terraform-ec2"
 
   provisioner "remote-exec" {
     inline = [
@@ -62,7 +62,7 @@ resource "aws_instance" "myec2" {
 
       # file is created via aws management console in a ec2/key-pair section
       private_key = file("/tmp/terraform-ec2.pem")
-      host = self.public_ip
+      host        = self.public_ip
     }
   }
 }
