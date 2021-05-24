@@ -25,6 +25,6 @@ data "aws_ami" "app_ami" {
 }
 
 resource "aws_instance" "myec2" {
-  ami           = data.aws_amiasdasd.app_ami.image_id
+  ami           = data.aws_ami.app_ami.image_id
   instance_type = "t2.nano"
 }

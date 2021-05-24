@@ -44,6 +44,12 @@ resource "aws_security_group" "allow_all_traffic" {
   }
 }
 
+locals {
+  ssh_user = "ec2-user"
+  # file is created via aws management console in a ec2/key-pair section
+  ssh_private_key = file("/tmp/terraform-ec2.pem")
+}
+
 resource "aws_instance" "myec2" {
   ami             = data.aws_ami.app_ami.image_id
   instance_type   = "t2.nano"
@@ -57,10 +63,23 @@ resource "aws_instance" "myec2" {
     ]
 
     connection {
-      type = "ssh"
-      user = "ec2-user"
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("/tmp/terraform-ec2.pem")
+      host        = self.public_ip
+    }
+  }
 
-      # file is created via aws management console in a ec2/key-pair section
+  provisioner "remote-exec" {
+    when = destroy
+    inline = [
+      "echo \"destroing the instance\""
+    ]
+
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
       private_key = file("/tmp/terraform-ec2.pem")
       host        = self.public_ip
     }
