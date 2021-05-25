@@ -37,4 +37,7 @@ variable "instance_type" {
 resource "aws_instance" "myec2" {
   ami             = data.aws_ami.app_ami.image_id
   instance_type   = lookup(var.instance_type, terraform.workspace)
+  tags            = {
+    staging = terraform.workspace
+  }
 }
