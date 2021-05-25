@@ -11,3 +11,4 @@
 * lab_11 - splat expressions;
 * lab_12 - remote exec provisioner;
 * lab_13 - local exec provisioner;
+* lab_14 - modules;
