@@ -9,8 +9,9 @@ terraform {
 
   backend "s3" {
     bucket = "kent2171-terraform"
-    key    = "tfstate-lab17"
-    region = "us-east-1"
+    key    = "lab17.tfsstate"
+    region = "us-east-2"
+    dynamodb_table = "terraform-s3-state-lock" 
   }
 }
 
