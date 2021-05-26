@@ -13,3 +13,4 @@
 * lab_13 - local exec provisioner;
 * lab_14 - modules;
 * lab_15 - workspaces;
+* lab_16 - save state into postgres;
