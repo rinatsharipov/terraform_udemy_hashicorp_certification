@@ -15,3 +15,4 @@
 * lab_15 - workspaces;
 * lab_16 - save state into postgres;
 * lab_17 - save state into s3 with lock using dynamo db;
+* lab_18 - using multiple aws accounts;
